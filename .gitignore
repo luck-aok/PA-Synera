@@ -1,0 +1,9 @@
+build/
+  *.pro.user
+  *.o
+  *.obj
+  moc_*
+  ui_*
+  qrc_*
+  Makefile
+  *.exe

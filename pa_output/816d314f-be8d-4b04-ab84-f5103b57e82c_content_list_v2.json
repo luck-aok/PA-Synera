@@ -1,0 +1,4803 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena高级程序设计课程PA 指导"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                247,
+                142,
+                751,
+                197
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2026年5月8日"
+                    }
+                ]
+            },
+            "bbox": [
+                403,
+                263,
+                589,
+                282
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "摘要"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                477,
+                323,
+                521,
+                341
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "自走棋是近年来流行的策略游戏品类,代表作有《TheLast Flame》和《TeamfightTactics（云顶之弈)》。其核心玩法分为三个阶段：玩家在准备阶段用金币招募英雄并进行排兵布阵，战斗阶段中英雄自动寻路攻击敌人并释放技能，结束后根据胜负结算金币。"
+                    }
+                ]
+            },
+            "bbox": [
+                163,
+                351,
+                833,
+                432
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "本次 PA 名为 Synera:Synergy Auto-Arena，便是用C++ 实现一个单机版轻量级自走棋游戏 (PVE)。Let's Go!"
+                    }
+                ]
+            },
+            "bbox": [
+                163,
+                435,
+                833,
+                473
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "0 开始之前"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                413,
+                504,
+                581,
+                527
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "WARNING"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                141,
+                551,
+                262,
+                568
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": " All of the code for this project must be your own. You may not copy source code  from other students or other sources that you find on the web. Plagiarism will not be tolerated."
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                576,
+                858,
+                640
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1．我们不禁止（但是也不推荐）在开源项目基础之上完成该项目，但是在验收的时候需要做到两点：主动告知使用的开源项目情况；强调你所做的修改，尤其是和本课程相关的修改。"
+                    }
+                ]
+            },
+            "bbox": [
+                129,
+                663,
+                884,
+                727
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2．举一个极端例子，假如一个开源项目已经达到我们的需求，但是如果你重构了它的代码，以更符合面向对象思想实现，那么不会认为是抄袭；但是如果直接拿这个项目验收而不修改（或者修改很少），那么将会判定为抄袭。注意：图像素材的替换不会被认为和本课程相关。"
+                    }
+                ]
+            },
+            "bbox": [
+                127,
+                741,
+                885,
+                829
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3．本次PA共分为四个阶段，每个阶段为期两周，共需约八周时间完成。验收预计将于第6周和第8周进行，分别检查基础功能与扩展功能。具体的实现顺序不强制要求，但验收时将严格按照本文档的功能要求进行检查。"
+                    }
+                ]
+            },
+            "bbox": [
+                127,
+                843,
+                884,
+                907
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "1"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                940,
+                504,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "形式化说明"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                139,
+                84,
+                247,
+                103
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "为统一实现语言，建议采用如下记号 (允许在代码中做等价替换)："
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                112,
+                729,
+                131
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·棋盘与地块：主棋盘记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "B = [ 1 , M ] \\times [ 1 , N ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，地块坐标记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( x , y )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "。占用函数 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sec _ { r } ( x , y ) \\in \\mathcal { U } _ { r } \\cup \\{ \\varnothing \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "表示第r轮该格上的单位。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                146,
+                858,
+                189
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·备战区：备战区索引集合记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { K } = \\{ 1 , \\dotsc , K \\} \\ \\left( \\mathit { 1 } \\sharp \\mathbb { I } \\ K = 8 \\right)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，每个槽位至多容纳一个单位。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                203,
+                858,
+                244
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·玩家与单位：玩家对象记为p，仅表示经营/决策主体；单位对象记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u \\in \\mathcal { U } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "我方与敌方单位同构，均由 Unit 表示。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                259,
+                858,
+                302
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "，控制归属与羁绊标签：定义 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { o w n e r } ( u ) \\in \\{ \\mathrm { P l a y e r C t r l }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ",EnemyCtrl}区分我方/敌方；定义 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { t r a i t s } ( u ) \\subseteq \\mathcal T"
+                    },
+                    {
+                        "type": "text",
+                        "content": "表示职业/种族等羁绊标签（用于羁绊计算，不用于敌我区分)。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                316,
+                860,
+                380
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "：轮次与阶段：第r轮单位集合为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\smash { \\mathcal { U } _ { r } = \\mathcal { A } _ { r } \\cup \\mathcal { E } _ { r } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，其中 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { A } _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "为我方参战集合， "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\mathcal { E } } _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "为敌方生成集合。流程阶段记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathtt { P r e p \\mathrm {  C o m b a t \\mathrm {  R e s o l v e } } }"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                395,
+                858,
+                437
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·战斗状态机：单位状态集合 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { S } = \\{ \\mathrm { I d } \\mathbf { l e } , \\mathrm { M o v i n g } , \\mathrm { A t t a c k i n g } , \\mathrm { C a s t i n g } , \\mathrm { D e a d } \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                451,
+                848,
+                472
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·索敌与攻击：对存活单位u，候选敌人集合定义为"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                485,
+                628,
+                505
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\operatorname { O p p } _ { r } ( u ) = \\{ v \\in \\mathcal { U } _ { r } \\mid \\operatorname { o w n e r } ( v ) \\neq \\operatorname { o w n e r } ( u ) , \\ v \\ \\overleftrightarrow { \\mathcal { F } } \\} \\} .",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/f9384c2c51ba6ba31dfeccf676f3b26df51f7298023f85d068c7bce84f7b9881.jpg"
+                }
+            },
+            "bbox": [
+                289,
+                521,
+                746,
+                542
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "目标选择先最小化欧氏距离，再按预设平局规则(如生命值、坐标序）处理。"
+                    }
+                ]
+            },
+            "bbox": [
+                178,
+                558,
+                847,
+                579
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·经济与人口：金币记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "购买/刷新/升级人口对应状态转移 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g  g - c _ { \\circ }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "阵约束为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "| \\mathcal { A } _ { r } | \\le \\exp ( p )"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                593,
+                858,
+                634
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·羁绊：对标签 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t \\in \\mathcal T"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，计数函数"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                649,
+                463,
+                669
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "n _ { t } = | \\{ u \\in \\mathcal { A } _ { r } \\mid t \\in \\operatorname { t r a i t s } ( u ) \\} | ,",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/1f63746634c82baf3eff17fe7189991ce98a5ff6523239bc722e374a394c6201.jpg"
+                }
+            },
+            "bbox": [
+                383,
+                686,
+                653,
+                706
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "当 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "达到阈值集合 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Theta _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "时激活对应效果。"
+                    }
+                ]
+            },
+            "bbox": [
+                178,
+                722,
+                541,
+                741
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·升星与装备：若存在同名同星单位三元组则触发合并算子 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { m e r g e 3 } ( \\cdot )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "；装备槽函数 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\operatorname { e q } ( u )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "满足容量约束 (如1件)。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                756,
+                858,
+                799
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·存档：存档状态可简记为 (在具体实现中应当由你自行修改)"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                813,
+                710,
+                833
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\Sigma = ( p , r , \\mathrm { p h a s e } , \\mathcal { A } _ { r } , \\mathcal { E } _ { r } , \\mathrm { B e n c h } , \\mathrm { S h o p } , \\mathrm { E q u i p P o o l } ) .",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/1485db544d10baf7bd81f738869b73c27b498b63334598d7e01eb76a48f3a946.jpg"
+                }
+            },
+            "bbox": [
+                304,
+                850,
+                729,
+                869
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "读档即恢复 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Sigma _ { \\mathfrak { c } }"
+                    }
+                ]
+            },
+            "bbox": [
+                178,
+                887,
+                317,
+                906
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                39,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                369,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                882,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "2"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                939,
+                507,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1前言"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                443,
+                89,
+                554,
+                112
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "自走棋（Auto-battler）是近年来极具策略深度的游戏品类，代表作有《TheLastFlame》和《TeamfightTactics（云顶之弈）》。在本次项目中，我们将实现一个名为Synera:Synergy Auto-Arena 的单机版轻量级自走棋游戏。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                129,
+                885,
+                193
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "在 Synera 中，玩家可以进行招募单位、排兵布阵、组合羁绊并观看单位与AI敌人自动战斗（PVE）等操作。该项目主要考察面向对象设计（OOP)，同时会涉及一些简单的状态机管理、寻路算法以及图形界面编程能力。项目代码规模预计在3000行以上。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                197,
+                885,
+                261
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/fb27802489a1ed5e3ec3368aa3a5358b4e60c60cc39e6d37a8aa8c09f416d7e4.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [],
+                "html": "<table><tr><td>分数构成与验收说明</td></tr><tr><td>本项目分为四个阶段。验收将进行两次： ·第一次验收：在阶段三结束后进行，检查阶段一至阶段三的所有基础功能。</td></tr><tr><td>·第二次验收：在阶段四结束后进行，检查扩展功能。</td></tr><tr><td>评分项 占比</td></tr><tr><td>各阶段基础功能 70% (阶段一、二、三的基础功能实现)</td></tr><tr><td>扩展内容 10%（根据阶段四实现的实际情况给分）</td></tr><tr><td>代码风格 10% 6（OOP 运用、代码风格与规范） 文档与提交规范10% (包含 README/AI使用说明)</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                115,
+                272,
+                880,
+                543
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2阶段一"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                428,
+                576,
+                569,
+                600
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.1棋盘与备战区"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                624,
+                326,
+                645
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "游戏的战场在逻辑上是一个M×N 的网格（例如8×8)。网格分为玩家半场（下半区）和敌人半场（上半区)。每个1×1的矩形是一个地块，每个地块同一时间只能容纳一个单位。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                657,
+                885,
+                720
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "除了主棋盘外，玩家还拥有一维的备战区（Bench，例如8个格子)，用于存放已购买但尚未上阵的单位。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                724,
+                884,
+                765
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.2基础单位与交互"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                791,
+                349,
+                813
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "单位是游戏中的核心实体。每个单位拥有基础属性：生命值 (HP)、攻击力(ATK)、攻击距离(Range)、最大法力值(MaxMana）和当前法力值(Mana)。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                826,
+                882,
+                868
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "你可以基于此设计基类Unit及其派生类，对于各种派生类而言你可以涉及可以有一些更多的属性，如装备、buff、技能、星阶、控制归属、阵营、羁绊等（当然你也可以"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                870,
+                885,
+                912
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                38,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                884,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "3"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                939,
+                507,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "在 Unit 基类中设置这些字段并初始化为空，这取决于你自己的设计)。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                84,
+                737,
+                103
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "对象模型说明"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                139,
+                116,
+                267,
+                135
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "为避免概念混淆，逻辑层面约定如下："
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                145,
+                477,
+                164
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "玩家(Player)：玩家是全局控制实体，记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "p _ { \\mathfrak { c } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "。玩家拥有资源与进度状态（血量、金币、等级、人口上限、当前关卡等)，并在准备阶段对己方单位进行经营与布阵决策。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                178,
+                862,
+                243
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·单位(Unit)：单位是战斗实体，记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u \\in \\mathcal { U } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "。每个单位采用统一的数据结构（如 HP、ATK、Range、Max Mana、Mana、位置、状态等）。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                256,
+                858,
+                300
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·敌我归属：定义函数"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                313,
+                371,
+                334
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\mathrm { o w n e r : } \\ : \\mathcal { U }  \\{ \\mathrm { P l a y e r C t r l , ~ E n e m y C t r l } \\} .",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/116b03bb79076df9c617a77c660818fc6ab139d4c7d24ff84374648cded63e56.jpg"
+                }
+            },
+            "bbox": [
+                342,
+                350,
+                690,
+                370
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "“我方单位/敌方单 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\langle \\vec { \\textmd { U } } ^ { \\prime } \\rangle ^ { \\prime }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "仅表示owner(u)取值不同，本质上是同一类Unit，不应建成两套不同类型体系。"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                386,
+                860,
+                430
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "羁绊标签：定义 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { t r a i t s } ( u ) \\subseteq T"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，用于职业/种族羁绊的计数与效果激活，不用于敌我区分。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                443,
+                858,
+                486
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·轮次单位集合：第𝑟轮战斗中，单位集合定义为"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                500,
+                613,
+                519
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\mathcal { U } _ { r } = \\mathcal { A } _ { r } \\cup \\mathcal { E } _ { r } , \\quad \\mathcal { A } _ { r } \\cap \\mathcal { E } _ { r } = \\emptyset ,",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/1821378d41bbefdca14965352165da9fecda7b972a25e86a71c0bdaf99dffc67.jpg"
+                }
+            },
+            "bbox": [
+                386,
+                537,
+                650,
+                556
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "其中 Ar 为我方参战单位集合， "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\mathcal { E } } _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "为该轮敌方单位集合。"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                573,
+                680,
+                593
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·敌对关系：对任意存活单位u，其可选敌方目标集合定义为"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                607,
+                707,
+                627
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\operatorname { O p p } _ { r } ( u ) = \\{ v \\in \\mathcal { U } _ { r } \\mid \\operatorname { o w n e r } ( v ) \\neq \\operatorname { o w n e r } ( u ) , \\ v \\ \\overleftrightarrow { \\mathcal { F } } \\} \\} .",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/56fd7a9338afe3d1ba345b3f870cc11a603fbaed3d692006dd4a0f96ce4be27e.jpg"
+                }
+            },
+            "bbox": [
+                289,
+                644,
+                746,
+                664
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "玩家是游戏的全局实体，具有血量、金币、等级、已有单位、人口上限等属性。玩家血量归零则游戏失败。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                686,
+                884,
+                726
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "单位系统采用统一类型建模：我方单位与敌方单位均为Unit 实例，通过owner 字段区分敌我控制归属；traits字段用于羁绊系统。第r轮开始时，系统按关卡配置生成敌方集合 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\mathcal { E } } _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "并部署于敌方半场；我方参战集合记为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { A } _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "。若 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\mathcal { E } } _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "全灭则本轮胜利，若"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { A } _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "全灭则本轮失败并扣除玩家一定血量。轮次结算后清空本轮战斗集合并进入下一轮。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                731,
+                885,
+                816
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "在阶段一，玩家需要能够使用鼠标在备战区和玩家半场之间自由拖拽单位，调整站位。如果拖拽的目标地块已被占用，应有合理的非法放置处理逻辑（例如交换位置或弹回原位)。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                820,
+                885,
+                884
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                39,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                369,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                884,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "4"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                940,
+                507,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.3 GUI"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                87,
+                235,
+                107
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "游戏需要一个图形界面（GUI)。阶段一的GUI需要能展示你的战斗棋盘、备战区网格，以及上面的单位。你还需要在界面上直观地展示单位的生命条、法力条或基础属性面板。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                121,
+                885,
+                184
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "界面的精美程度不影响分数，但必须清晰表达逻辑。"
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                204,
+                598,
+                225
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "阶段一Checklist"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                139,
+                244,
+                305,
+                263
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］实现 M×N 棋盘、玩家半场/敌方半场与地块占用规则。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                272,
+                722,
+                293
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］实现备战区（Bench）与棋盘之间的数据同步。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                306,
+                630,
+                328
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[] 实现 Unit 基类 (HP/ATK/Range/Max Mana/Mana 等字段)。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                340,
+                773,
+                361
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］我方/敌方采用统一Unit 类型实现，仅用owner 区分控制归属，traits仅用于羁绊。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                374,
+                860,
+                417
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［」实现玩家实体与敌方轮次生成（ε)。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                430,
+                544,
+                453
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［」实现拖拽摆放与非法放置处理 (交换或回弹)。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                464,
+                626,
+                486
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］GUI展示棋盘/备战区/单位信息(血条、蓝条或属性面板)。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                499,
+                749,
+                520
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3阶段二"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                428,
+                558,
+                569,
+                583
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.1战斗流程与状态机"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                606,
+                374,
+                627
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "在这个阶段，你需要实现单机PvE 模式：在战斗阶段开始时，敌人半场会根据当前关卡预设，自动生成敌人阵容。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                639,
+                884,
+                681
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "游戏分为准备阶段（排兵布阵），战斗阶段（不可移动，由AI接管）与结算阶段，三个阶段作为一次Loop，每一轮会更新遇到的敌人直至游戏结束。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                684,
+                885,
+                727
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·准备阶段，可以从商店购买单位，更换装备，排兵布阵，调整上场单位，升级人口数等。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                741,
+                882,
+                783
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·战斗开始时，敌人半场根据关卡自动生成敌人阵容。建议为单位实现有限状态机（如Idle,Moving,Attacking,Casting,Dead）以管理战斗逻辑。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                797,
+                884,
+                840
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·结算阶段，若此轮胜利，敌人有概率掉落装备，且玩家获得较高的金币数；若此轮失败，则扣除玩家一定血量，此时玩家获得较低的金币数。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                854,
+                884,
+                896
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                39,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                369,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                884,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "5"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                940,
+                507,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·胜负条件：玩家血量归零时游戏失败；击败所有预设关卡（如3轮）后游戏胜利。你也可以选择无限模式，敌人随轮次递增难度。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                84,
+                885,
+                126
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·关卡推进：每轮敌人阵容由当前关卡数决定，随关卡推进敌人数量、属性和种类逐步增强 (如第1轮仅1-2个弱小单位，第3轮出现多个高属性精英)。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                140,
+                884,
+                183
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.2寻路与移动"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                209,
+                302,
+                229
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "战斗中，单位自动搜索并锁定欧氏距离最近的敌方目标。"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                242,
+                652,
+                260
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·目标在攻击距离内则站桩攻击；否则向目标移动。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                275,
+                593,
+                294
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·碰撞与阻挡：移动时不能穿过任何单位，必须进行绕行。需实现基础寻路与防重叠碰撞机制 （即在移动过程中同一地块只能容纳最多一个单位)。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                310,
+                884,
+                351
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·如遇到距离相同的两个敌方目标，请按照优先生命值高低、从左向右、从下到上的方式索敌。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                366,
+                882,
+                409
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·敌方单位也具有攻击范围/攻击目标，也可能进行移动，向着它的目标移动。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                423,
+                821,
+                443
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.3攻击与技能"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                468,
+                302,
+                489
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·自动攻击：单位根据一定的攻击速度，周期性对目标造成伤害。每次普攻回复一定法力值。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                502,
+                884,
+                544
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·多态技能：当法力值满时，单位自动释放技能（法力值清零)。你必须利用面向对象的多态特性，实现3-5种不同的英雄单位及其独特的技能效果（例如：单体眩晕、直线 AOE 伤害、友军范围回血等）。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                558,
+                885,
+                623
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·一个单位生命值≤0时死亡。当一方所有单位生命值全部≤0 时战斗结束，结算胜负。"
+                    }
+                ]
+            },
+            "bbox": [
+                132,
+                638,
+                884,
+                678
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/3e7850670a9f74cd879693e8a211bacd2401961633f745daaf83f80f5f85f663.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "参考数值（可自行调整）"
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>单位初始法力值</td><td>0(或各英雄自定义初始法力）</td></tr><tr><td>法力获取</td><td>每次普攻回复10 点法力值</td></tr><tr><td>最大法力值</td><td>例如 60 (各英雄可不同)</td></tr><tr><td>攻击速度</td><td>以帧数计量，如每60 帧（约1秒）攻击一次</td></tr><tr><td>移动速度</td><td>以帧数计量，如每 20 帧移动一格</td></tr><tr><td>伤害数值</td><td>1 星单位ATK 建议 20-50，HP 建议 200-500</td></tr><tr><td>2 星单位属性</td><td>建议为1星的1.5-2倍</td></tr><tr><td></td><td>敌方随关卡数增长每3轮敌人属性提升约 20%</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                141,
+                722,
+                746,
+                906
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                38,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                884,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "6"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                939,
+                507,
+                954
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "阶段二Checklist"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                139,
+                84,
+                305,
+                103
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］完成准备/战斗/结算三阶段循环与轮次推进。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                112,
+                615,
+                131
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［」敌方单位按关卡配置自动生成并随轮次增强。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                146,
+                616,
+                167
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］实现单位状态机 (Idle/Moving/Attacking/Casting/Dead)。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                179,
+                736,
+                200
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［］实现索敌规则 (欧氏距离 ＋平局优先级)。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                214,
+                594,
+                235
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［］实现寻路、阻挡与防重叠碰撞。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                248,
+                495,
+                269
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［］实现普攻、回蓝、技能多态（3-5英雄）与胜负结算。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                281,
+                692,
+                304
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4阶段三"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                428,
+                341,
+                569,
+                366
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1商店与经济"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                388,
+                302,
+                410
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "引入金币系统。每完成一个关卡，玩家获得固定的基础金币。"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                423,
+                694,
+                441
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "游戏界面需包含一个招募区（Shop)，提供5个随机刷新的单位供玩家购买。玩家扣除相应金币后，购买的单位会出现在备战区。玩家也可花费少量金币手动刷新商店。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                444,
+                884,
+                486
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "人口系统：场上单位数受人口上限约束，初始人口上限为3-4。玩家可花费金币升级人口上限（如每级花费递增)，每提升一级人口上限+1。当场上单位数已达人口上限时，不能再从备战区拖拽单位上阵。备战区不受人口限制（比如固定为8)。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                489,
+                885,
+                554
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.2羁绊系统"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                580,
+                278,
+                601
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "你需要设计并实现4-6种职业/种族（羁绊）。多名不同同职英雄在场时激活全局Buff（如属性光环、机制改变)。每个英雄至少拥有1-2种标签。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                613,
+                884,
+                655
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "半开放式要求：你可以自行命名和设计这些羁绊，但至少要包含类似以下机制的实现："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                658,
+                884,
+                700
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·属性光环类：如”战士”达到2/4个时，所有战士增加护甲/生命值。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                714,
+                757,
+                734
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·机制改变类：如”法师”达到3个时，所有友军技能伤害翻倍；或”游侠”有概率连续攻击两次。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                749,
+                884,
+                789
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "最低要求：在4-6 种羁绊中，至少包含2种属性光环类和1种机制改变类，其余可自由设计。每种羁绊需有明确的触发人数阈值和效果描述。"
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                810,
+                858,
+                853
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                39,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                882,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "7"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                939,
+                505,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.3进阶与装备"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                86,
+                300,
+                108
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "你需要设计升星与装备掉落机制，至少要包含如下要求："
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                121,
+                653,
+                139
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "升星机制：当玩家购买或获得单位后，若备战区与场上合计拥有3个完全相同的1星单位（即同名同星级），则在准备阶段自动合并为1个属性提升的2星单位（合并发生在最近获得第3个的时刻，合并后该单位保留在原位)。2星单位的属性应获得显著提升 (建议为1星的1.5-2倍)。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                143,
+                885,
+                229
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "装备掉落：击败敌人后有概率掉落基础装备，装备出现在备战区旁的装备栏中。玩家可将装备拖拽至单位身上穿戴。每个单位最多穿戴1件装备（2星单位可扩展为2件，作为可选扩展)。你必须至少实现以下4种基础装备："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                233,
+                885,
+                297
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/91ca9cc977fe90ef8c9761fb18c34807eecb2476b45a3ae66ca38db52353d88a.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [
+                    {
+                        "type": "text",
+                        "content": "你也可以在此基础上自由添加更多装备种类。"
+                    }
+                ],
+                "html": "<table><tr><td>装备名称 效果</td><td></td></tr><tr><td>铁剑</td><td>攻击力+15</td></tr><tr><td>锁子甲</td><td>生命值+150</td></tr><tr><td>急速手套</td><td>攻击速度提升 20%</td></tr><tr><td>蓝水晶</td><td>最大法力值 -30 (使技能更快释放)</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                282,
+                310,
+                715,
+                437
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.4游戏存档"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                497,
+                278,
+                518
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "游戏需要支持存档功能。你需要自行实现一套存档与读档功能（序列化与反序列化)，保存当前游戏的金币、关卡进度、场上与备战区的单位状态、穿戴的装备等，并写入到文件中。保存好的存档应能被重新加载，完全恢复到存档时的状态。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                531,
+                884,
+                595
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "在第一次验收时，将全面检查阶段一至阶段三的各项功能与存档读取机制。"
+                    }
+                ]
+            },
+            "bbox": [
+                136,
+                614,
+                798,
+                636
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.5 GUI"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                669,
+                233,
+                687
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "当前阶段需完成整个游戏的GUI设计，需展示你的战斗棋盘、备战区网格、上面的单位、玩家血量/金币数/人口数、商店招募区、装备/羁绊/星级显示、当前轮次/阶段/准备时间等，在界面上直观地展示单位的生命条、法力条或基础属性面板。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                702,
+                885,
+                766
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "界面的精美程度不影响分数，但必须清晰表达逻辑。"
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                785,
+                598,
+                806
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                39,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                884,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "8"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                939,
+                507,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "阶段三Checklist"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                139,
+                85,
+                305,
+                103
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］实现金币系统、关卡奖励与商店 (5个招募位)。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                112,
+                640,
+                131
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·「」实现购买、刷新与备战区落位逻辑。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                146,
+                534,
+                166
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］实现人口上限升级与上阵人数限制。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                180,
+                534,
+                200
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］实现 4-6 种职业/种族（至少出现2 种属性光环＋1 种机制改变类型的羁绊)。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                215,
+                858,
+                256
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］实现升星（3合1）与2星属性提升。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                271,
+                551,
+                291
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［］实现装备掉落、穿戴限制与至少4种基础装备。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                305,
+                638,
+                325
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［］实现存档/读档机制。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                340,
+                403,
+                360
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［］GUI完整展示经济、商店、羁绊、星级、轮次与阶段信息。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                373,
+                737,
+                393
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5阶段四"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                428,
+                431,
+                568,
+                455
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "此阶段为扩展阶段，占总分的10%。你可以选择实现以下推荐的扩展功能，也可以加入任何你觉得很酷的想法。只要实现了一个具备相当工作量的合理拓展功能，就能得到扩展部分的满分。推荐方向："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                473,
+                884,
+                538
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·高级经济系统：引入每10 金币产生1金币的”利息机制”，以及连胜/连败的额外金币奖励。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                551,
+                884,
+                594
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·装备合成树：引入装备合成系统。两件特定基础装备穿戴在同一单位身上时，自动合成为一件具有特殊被动效果的”高级装备”（如复活甲、吸血剑)。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                608,
+                884,
+                650
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·视听结合：添加背景音乐、攻击音效。为远程攻击添加弹道飞行物（Projectiles），为技能添加范围特效等。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                664,
+                885,
+                707
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·局域网联机：将PvE改为真正的PvP。使用Socket 实现局域网联机，两名玩家各自运营，战斗阶段互相将镜像军队发送给对方进行自动对战。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                721,
+                882,
+                763
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·战争迷雾/视野系统：增加特殊模式，部分棋盘被遮挡。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                777,
+                643,
+                797
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·智能索敌：根据敌方每个单位对我方的威胁程度进行索敌。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                812,
+                672,
+                831
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                39,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                882,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "9"
+                    }
+                ]
+            },
+            "bbox": [
+                492,
+                939,
+                507,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "阶段四Checklist"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                139,
+                84,
+                305,
+                103
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[」选择并实现至少1个具备实质工作量的扩展功能。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                112,
+                658,
+                131
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［］扩展功能与现有系统正确集成 (流程可正常闭环)。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                146,
+                665,
+                166
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·[］完成对应GUI/交互或系统逻辑展示。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                179,
+                549,
+                200
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·［」在 README 中补充扩展设计、实现说明与演示要点。"
+                    }
+                ]
+            },
+            "bbox": [
+                156,
+                214,
+                697,
+                235
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6实验指南"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                413,
+                272,
+                583,
+                297
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "实验指南旨在降低同学们进行实验的难度，里面的内容不是强制要求，希望能给你带来帮助。"
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                324,
+                858,
+                367
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6.1 GUI 与 Starter Code"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                399,
+                430,
+                420
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "往年的同学大多使用Qt 来完成实验，但本项目不限制于Qt，SDL2 等第三方库也是允许的，界面好坏不影响基础分数，但必须使用C/C++开发。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                434,
+                884,
+                475
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "图形库推荐"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                139,
+                488,
+                248,
+                508
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1.Qt：(https://www.qt.io/）是非常流行的C++ 图形应用开发框架。体量较大，功能较多。网络上有较多的Qt 教学资源。这里给出两份Qt 教程：https://qtguide.ustclug.org/贴合QtCreator 软件，从最基础的底层原理开始教学，深入浅出；https://wizardforcel.gitbooks.io/qt-beginning/content／从实际开发App 的角度开始，方便快速上手。"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                516,
+                863,
+                626
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2.SDL2:(https://www.libsdl.org/）是相对流行的基于C 的轻量级图形渲染库。提供了基本的绘图功能（如刷新屏幕，渲染图片等）。体积很小，功能比较基础，但是易于学习。这是一份 SDL2 教程：https://lazyfoo.net/tutorials/SDL/。"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                639,
+                860,
+                727
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "为了帮助大家快速上手QT的可视化，我们提供了一份基础的StarterCode。该Demo使用Qt实现了一个简易的网格框架，同时包含了基础的网格、拖拽机制。你可以基于此Demo 深人开发/重构OOP逻辑，或者将其作为参考，从零构建你自己的PA proj。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                746,
+                885,
+                833
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                38,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                882,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "10"
+                    }
+                ]
+            },
+            "bbox": [
+                487,
+                939,
+                510,
+                954
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6.2基于帧的逻辑与状态机"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                87,
+                421,
+                108
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "在自走棋中，多个单位同时进行移动、攻击和施法。处理这种并发逻辑的最佳方式是使用基于帧的时间循环（如设定60fps，每帧调用所有单位的update（）方法）。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                121,
+                884,
+                162
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "同时，强烈建议为每个单位实现一个有限状态机 (FSM)。一个单位在任何时刻应当处于以下状态之一：Idle（空闲)、Moving（移动中)、Attacking（攻击前摇)、Casting（施法中）、Dead（死亡)。清晰的状态划分能极大减少Bug 的产生。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                166,
+                885,
+                230
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6.3寻路与可达性"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                255,
+                326,
+                275
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "寻路是本项目的核心难点之一。在二维网格（TileMap）中，你可以使用广度优先搜索（BFS）或 A*算法。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                290,
+                884,
+                329
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "由于战场上充满了不断移动的其他单位，目标单位也可能在移动，因此寻路不应该是静态的。你可能需要让单位每走几步或目标位置发生变化时，重新计算一次路径(Re-pathing)。同时要处理”多个近战单位围殴一个敌人，导致无路可走”的碰撞阻塞情况。"
+                    }
+                ]
+            },
+            "bbox": [
+                110,
+                334,
+                885,
+                419
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6.4任务优先级与目标锁定"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                445,
+                423,
+                467
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "一个单位该攻击谁？通常是欧氏距离最近的敌人。如果存在多个距离相同的敌人,可以通过特定的优先级规则（如优先攻击当前血量最低的）来打破僵局。当目标死亡后，单位需要立即回到Idle状态并重新搜索新的目标。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                479,
+                887,
+                543
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6.5素材获取"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                569,
+                277,
+                589
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "在本项目中，素材主要包括：角色（Unit）、技能特效、UI界面、音效等。良好的素材可以提升展示效果，但不会影响基础分数，建议优先保证功能实现。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                602,
+                884,
+                644
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "推荐使用以下免费资源："
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                648,
+                371,
+                667
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "· Kenney (https://kenney.nl/assets): 推荐搜索\"strategy\"， \"RPG\", \"UI” 分类。其中1-bit pack、Tiny RPG Forest 等素材包非常适合网格游戏。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                680,
+                885,
+                721
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "· OpenGameArt (https://opengameart .org):搜索\"character sprite 32x32”或\"tilemapRPG”可找到大量角色和地图素材。注意筛选License（优先选择CC0 或CC-BY)。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                736,
+                919,
+                777
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "· itch.io (https://itch.io/game-assets):筛选标签\"sprite”, \"characters”, \"tiles\", 可找到大量免费像素风格素材包。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                793,
+                887,
+                833
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·CraftPix(https://craftpix.net)：提供大量高质量 2D 游戏素材（角色、场景、UI 等），可直接搜索\"2D character”,\"fantasy RPG”，\"top-down”等关键词。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                847,
+                885,
+                889
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "素材使用建议："
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                902,
+                290,
+                921
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                39,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                884,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "11"
+                    }
+                ]
+            },
+            "bbox": [
+                487,
+                940,
+                509,
+                954
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·角色图标：建议使用32×32或64×64的PNG 精灵图。如果找不到合适的图片，用带颜色区分的纯色方块＋文字标注（如红色方块写”战士”、蓝色写”法师”）完全足够，不影响评分。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                84,
+                885,
+                148
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·棋盘与UI：简单的色块填充即可，无需精致贴图。如果实在找不到素材，通过Qt可直接使用QPainter 绘制矩形和文字。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                162,
+                885,
+                204
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·格式：优先使用 PNG（支持透明通道)，避免JPG（无透明背景）。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                218,
+                749,
+                239
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·素材管理：建议在项目目录下创建assets/或 res/文件夹，按assets/units/、assets/ui/、assets/effects/分类存放。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                253,
+                884,
+                294
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "WARNING"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                141,
+                307,
+                262,
+                324
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "在素材选择上，请优先选择可免费使用（如CC0）的素材；如需署名，请在项目中注明来源；不建议直接使用商业游戏素材（如金铲铲之战）。"
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                332,
+                857,
+                376
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "本课程重点并不在于GUI设计，你甚至可以使用简单图形作图，整体游戏的GUI精美与否并不会影响多少实验的整体分数。"
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                403,
+                860,
+                447
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "7 如何提问"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                413,
+                483,
+                583,
+                508
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Question 7.1"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                139,
+                529,
+                268,
+                546
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "如何正确地向助教提问?"
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                554,
+                359,
+                575
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "向助教提问时，请遵循以下原则："
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                581,
+                438,
+                602
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·提供足够上下文：说明你的问题出现在哪个模块、你尝试了哪些方法、遇到的具体错误信息。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                615,
+                858,
+                659
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·先搜索/AI再提问：请先通过搜索引擎（Google、Stack Overflow 等）查找类似问题，或向Chatgpt、Deepseek 等大模型提问。如果能轻松找到答案，说明你没有尝试自己解决问题。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                671,
+                860,
+                739
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·格式化代码片段：如果问题涉及代码，请使用markdown 代码块格式化，方便阅读。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                751,
+                858,
+                795
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·单次提问聚焦一个问题：不要在一个问题中包含多个不相关的疑问，这会增加回答的复杂度。"
+                    }
+                ]
+            },
+            "bbox": [
+                154,
+                807,
+                860,
+                851
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                38,
+                242,
+                57
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                369,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                810,
+                39,
+                884,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "12"
+                    }
+                ]
+            },
+            "bbox": [
+                487,
+                939,
+                510,
+                953
+            ]
+        }
+    ],
+    [
+        {
+            "type": "algorithm",
+            "content": {
+                "algorithm_caption": [],
+                "algorithm_content": [
+                    {
+                        "type": "text",
+                        "content": "Question 7.2哪些问题是不适合向助教提问的?·不相干的问题：如“我的电脑出故障了”、“文件找不到了”等，这类问题…·编译error：编译器会明确指出错误原因，请仔细阅读错误提示并修正。·未经搜索的问题：能在前3个搜索结果中找到答案的问题，不要直接拿来问。如果遇到无法自行解决的编程难题，欢迎随时联系助教，但请务必提供：你的运行环境、具体的错误信息或异常堆栈、你已经尝试过的解决方法等信息。"
+                    }
+                ],
+                "algorithm_footnote": []
+            },
+            "bbox": [
+                115,
+                80,
+                882,
+                309
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "8项目提交与文档说明"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                341,
+                340,
+                655,
+                363
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "8.1提交格式"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                387,
+                278,
+                407
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "最终提交内容为整个项目压缩包（.zip或.tar.gz），请务必在打包前剔除编译生成的缓存文件夹（如build/、*.o)，只保留源码、资源、文档和游戏最终的可执行文件。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                420,
+                885,
+                462
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "8.2项目文档 (README)"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                488,
+                428,
+                510
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "根目录下需提供 README.md，包含以下内容："
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                523,
+                551,
+                541
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1．基本信息：姓名，学号，项目各阶段完成度。"
+                    }
+                ]
+            },
+            "bbox": [
+                127,
+                557,
+                552,
+                575
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2．文件树结构：展示目录树并简要解释核心文件夹。"
+                    }
+                ]
+            },
+            "bbox": [
+                127,
+                590,
+                591,
+                609
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3．核心类和数据结构：列出自行创建的核心类（如Unit，Board）及其主要功能。"
+                    }
+                ]
+            },
+            "bbox": [
+                127,
+                624,
+                843,
+                643
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "4.算法描述：简述关键算法（寻路、目标锁定、羁绊计算）。"
+                    }
+                ]
+            },
+            "bbox": [
+                127,
+                658,
+                663,
+                677
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "5.辅助函数：简明扼要地说明全局工具函数的作用 (如果你用到了一些辅助函数)。"
+                    }
+                ]
+            },
+            "bbox": [
+                127,
+                693,
+                863,
+                712
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "8.3AI使用说明"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                738,
+                317,
+                759
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "利用AI辅助是被鼓励的，但必须完全掌控代码。文档中须单设一节\"AI使用说明”:"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                772,
+                885,
+                791
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·项目规划：说明如何构思并将项目拆分交由 AI辅助。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                806,
+                628,
+                826
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·核心代码解析：挑出至少两个由AI辅助生成的核心模块，用自己的话详细解释其运作原理。若验收时发现代码存在复杂的AI生成痕迹却无法解释，将面临严重扣分。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                840,
+                885,
+                904
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                39,
+                242,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                882,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "13"
+                    }
+                ]
+            },
+            "bbox": [
+                487,
+                939,
+                512,
+                954
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "9代码风格"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                413,
+                89,
+                583,
+                112
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·面向对象（OOP)：核心实体（单位、技能）必须使用继承和多态实现，构建基类并派生具体英雄类。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                129,
+                884,
+                172
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·泛型编程：鼓励使用 STL（如 std::vector，std::map）管理单位和羁绊。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                186,
+                811,
+                205
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·异常处理：存档读档时推荐使用try-catch 防止崩溃，确保游戏在出现常规错误时不会发生Segfault（如在验收阶段发生异常，将酌情扣分）。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                221,
+                884,
+                262
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·代码格式化：时刻保持代码整洁，缩进与命名风格一致，推荐使用clang-format。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                277,
+                884,
+                297
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "10说明与致谢"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                393,
+                328,
+                606,
+                353
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "10.1 文档说明"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                375,
+                290,
+                395
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·本文档旨在提供项目实现的统一参考与验收边界说明，帮助同学明确阶段目标与最低要求。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                409,
+                884,
+                450
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·文档中的示例数值、实现细节与技术路线均为建议，不限制你在满足功能要求前提下进行合理扩展。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                466,
+                884,
+                506
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·若本文档与后续课程公告存在冲突，以课程主页、课堂通知或助教统一说明为准。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                521,
+                873,
+                542
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "10.2项目说明"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                568,
+                290,
+                588
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·本项目的玩法灵感主要来源于 Auto-battler 类型游戏及其常见设计范式，如回合制运营、自动战斗、单位成长与羁绊构筑等。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                601,
+                884,
+                643
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·课程项目在此基础上进行了教学化抽象，重点服务于面向对象设计能力的训练。"
+                    }
+                ]
+            },
+            "bbox": [
+                131,
+                657,
+                853,
+                677
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "10.3致谢"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                115,
+                703,
+                243,
+                724
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·感谢每一位同学参与高级程序设计课程PA项目，在实践中投入时间与热情。"
+                    }
+                ]
+            },
+            "bbox": [
+                117,
+                737,
+                820,
+                756
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "·感谢同学们在开发过程中的交流与反馈，这些讨论将推动PA与课程项目的不断完善与改进。同时，特别致谢本次PA的设计者李世昌。"
+                    }
+                ]
+            },
+            "bbox": [
+                119,
+                771,
+                870,
+                813
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "祝你在实现 Synera 的过程中，既能完成验收目标，也能真正提升面向对象设计与工程实践能力，PA 顺利！"
+                    }
+                ]
+            },
+            "bbox": [
+                124,
+                832,
+                872,
+                876
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "高级程序设计"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                38,
+                242,
+                57
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Synera: Synergy Auto-Arena"
+                    }
+                ]
+            },
+            "bbox": [
+                371,
+                39,
+                628,
+                55
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "2026春"
+                    }
+                ]
+            },
+            "bbox": [
+                811,
+                39,
+                884,
+                55
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "14"
+                    }
+                ]
+            },
+            "bbox": [
+                487,
+                939,
+                510,
+                953
+            ]
+        }
+    ]
+]
