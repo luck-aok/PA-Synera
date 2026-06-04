@@ -6,6 +6,7 @@
 //新加
 #include <QStringList>
 #include <QList>
+#include "skill/skilleffect.h"
 
 class Projectile;
 class BoardGeometry;
@@ -93,6 +94,8 @@ private:
     int m_moveSpeed = 90;//每多少帧移动一格
     int m_attackCooldown = 0;//攻击冷却剩余帧数
     int m_moveCooldown = 0;//移动冷却剩余帧数
+    int m_baseAttackSpeed = -1;  // 初始攻速（-1 = 未记录）
+    int m_baseMoveSpeed = -1;    // 初始移速（-1 = 未记录）
 
 public:
     //getter
@@ -143,7 +146,13 @@ public:
 
     virtual CastVisual* castVisual() { return nullptr; }
 
+    // 效果系统
+    void addEffect(const SkillEffect& e);
+    void removeEffectsFromSource(void* source);
+    void tickEffects();
+
 private:
+    QList<SkillEffect> m_activeEffects;
     QList<Projectile*> m_projectiles;
 
 

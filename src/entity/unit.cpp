@@ -34,6 +34,8 @@ void Unit::updateTarget(const QList<Unit*>& allUnits){
 
 void Unit::tickCooldowns(Game* /*game*/)
 {
+    tickEffects();
+
     //这种是默认不会放技能的角色，只有四种状态，没有Casting状态
     if (m_state == State::Moving && m_moveCooldown > 0)
         m_moveCooldown--;
@@ -74,6 +76,11 @@ void Unit::resetToDefault()
     m_path.clear();
     m_moveCooldown = 0;
     m_attackCooldown = 0;
+    m_activeEffects.clear();
+    if (m_baseAttackSpeed != -1)
+        m_attackSpeed = m_baseAttackSpeed;
+    if (m_baseMoveSpeed != -1)
+        m_moveSpeed = m_baseMoveSpeed;
 }
 
 Unit* Unit::findTarget(const QList<Unit*>& allUnits){
@@ -148,4 +155,61 @@ void Unit::clearProjectiles()
 Projectile* Unit::createProjectile(Unit* target, BoardGeometry* geo)
 {
     return new SimpleProjectile(target, m_atk, geo);
+}
+
+void Unit::addEffect(const SkillEffect& e)
+{
+    m_activeEffects.append(e);
+}
+
+void Unit::removeEffectsFromSource(void* source)
+{
+    for (int i = m_activeEffects.size() - 1; i >= 0; --i) {
+        if (m_activeEffects[i].source == source)
+            m_activeEffects.removeAt(i);
+    }
+}
+
+void Unit::tickEffects()
+{
+    // 首次记录初始基准值
+    if (m_baseAttackSpeed == -1)
+        m_baseAttackSpeed = m_attackSpeed;
+    if (m_baseMoveSpeed == -1)
+        m_baseMoveSpeed = m_moveSpeed;
+
+    // 每帧从基准值开始恢复
+    m_attackSpeed = m_baseAttackSpeed;
+    m_moveSpeed = m_baseMoveSpeed;
+
+    for (int i = m_activeEffects.size() - 1; i >= 0; --i) {
+        SkillEffect& e = m_activeEffects[i];
+        if (e.remainingFrames > 0) {
+            e.remainingFrames--;
+            if (e.remainingFrames <= 0) {
+                m_activeEffects.removeAt(i);
+                continue;
+            }
+        }
+
+        switch (e.type) {
+        case EffectType::AttackSpeedSlow:
+            m_attackSpeed = static_cast<int>(m_attackSpeed * (1.0f + e.value));
+            break;
+        case EffectType::AttackSpeedUp:
+            m_attackSpeed = static_cast<int>(m_attackSpeed * (1.0f - e.value));
+            break;
+        case EffectType::MoveSpeedUp:
+            m_moveSpeed = static_cast<int>(m_moveSpeed * (1.0f - e.value));
+            break;
+        case EffectType::DamageOverTime:
+            setHp(hp() - static_cast<int>(e.value));
+            if (isDead())
+                setState(State::Dead);
+            break;
+        case EffectType::HealOverTime:
+            setHp(hp() + static_cast<int>(e.value));
+            break;
+        }
+    }
 }

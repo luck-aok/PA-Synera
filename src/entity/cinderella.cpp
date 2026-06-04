@@ -35,6 +35,8 @@ void cinderella::decideState()
 
 void cinderella::tickCooldowns(Game* game)
 {
+    tickEffects();
+
     if (!m_skill->isCasting())
         m_skill->Cast_tickCooldown();
 

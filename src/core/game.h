@@ -75,6 +75,7 @@ public:
 
     QGraphicsScene* scene() const { return m_scene; }
     BoardGeometry* boardGeometry() { return &m_geometry; }
+    const QList<Unit*>& allUnits() const { return m_units; }
 
     void handleDragStarted(int unitId, const QPoint& sourceGrid, const QPointF& scenePos);
     void handleDragMoved(int unitId, const QPoint& sourceGrid, const QPointF& scenePos);

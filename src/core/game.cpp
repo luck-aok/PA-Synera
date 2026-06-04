@@ -12,7 +12,13 @@
 
 //角色
 #include"entity/cinderella.h"
-
+#include"entity/silvermane.h"
+#include"entity/magicmirror.h"
+#include"entity/mermaid.h"
+#include"entity/snowwhite.h"
+#include"entity/littlematch.h"
+#include"entity/uninvited.h"
+#include"entity/sleepingbeauty.h"
 
 
 namespace {
@@ -57,12 +63,33 @@ void Game::createStarterUnitsIfNeeded()
     Unit* unit1 = new cinderella();
     Unit* unit2 = new Unit("弓手");
     Unit* unit3 = new Unit("法师");
+    Unit* unit4 = new silvermane();
+    Unit* unit5 = new MagicMirror();
+    Unit* unit6 = new Mermaid();
+    Unit* unit7 = new SnowWhite();
+    Unit* unit8 = new LittleMatch();
+    Unit* unit9 = new Uninvited();
+    Unit* unit10 = new SleepingBeauty();
     unit1->setOwner(Unit::Owner::PlayerCtrl);
     unit2->setOwner(Unit::Owner::PlayerCtrl);
     unit3->setOwner(Unit::Owner::PlayerCtrl);
+    unit4->setOwner(Unit::Owner::PlayerCtrl);
+    unit5->setOwner(Unit::Owner::PlayerCtrl);
+    unit6->setOwner(Unit::Owner::PlayerCtrl);
+    unit7->setOwner(Unit::Owner::PlayerCtrl);
+    unit8->setOwner(Unit::Owner::PlayerCtrl);
+    unit9->setOwner(Unit::Owner::PlayerCtrl);
+    unit10->setOwner(Unit::Owner::PlayerCtrl);
     m_units.append(unit1);
     m_units.append(unit2);
     m_units.append(unit3);
+    m_units.append(unit4);
+    m_units.append(unit5);
+    m_units.append(unit6);
+    m_units.append(unit7);
+    m_units.append(unit8);
+    m_units.append(unit9);
+    m_units.append(unit10);
 
     //设置两个敌方模型
     Unit* enemy1 = new Unit("步兵");

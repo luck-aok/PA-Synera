@@ -161,7 +161,27 @@ QString UnitItem::spriteRelativePathForUnit() const
     if (name == QString::fromUtf8("灰姑娘")) {
         return QStringLiteral("assets/cinderella/7dfcca7d-7c9c-4564-8bf3-fa5bb997bf56.png");
     }
-
+    if (name == QString::fromUtf8("大灰狼")){
+        return QStringLiteral("assets/silvrmane/1e8f9073-1be0-42cf-b88a-0f8cd218901b.png");
+    }
+    if (name == QString::fromUtf8("魔镜")){
+        return QStringLiteral("assets/magicmirror/magicmirror_2.png");
+    }
+    if (name == QString::fromUtf8("人鱼")){
+        return QStringLiteral("assets/mermaid/mermaid_2.png");
+    }
+    if (name == QString::fromUtf8("白雪")){
+        return QStringLiteral("assets/snowwhite/snowwhite_1.png");
+    }
+    if (name == QString::fromUtf8("小火苗")){
+        return QStringLiteral("assets/littlematch/littlematch_1.png");
+    }
+    if (name == QString::fromUtf8("无邀者")){
+        return QStringLiteral("assets/Uninvited/Uninvited_1.png");
+    }
+    if (name == QString::fromUtf8("睡美人")){
+        return QStringLiteral("assets/sleepbeauty/sleepbeauty_2.png");
+    }
     return QString();
 }
 
